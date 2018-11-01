@@ -1,5 +1,6 @@
 # Sudoku
 Sudoku solver without using existing algorithms and libraries. 
+
 Aim is to create complete web app with modern frameworks
 
 
