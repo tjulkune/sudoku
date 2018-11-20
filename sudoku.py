@@ -40,18 +40,31 @@ def printSudoku(sudoku):
 def validateBlocks(sudoku):
     print("Validating blocks")
     step = 3
-    it = 0
-    for val in range(0,27,step):
-       it += 1
-       print ("BLOCKNUM", it)
-       block = sudoku[val:val+step]
-       block[val:val+9] = sudoku[val+9:val+step+9]
-       block[val:val+19] = sudoku[val+18:val+step+18]
-       if (len(block) == 9):
-           if (checkDuplicates(block) == True):
-               print ("Valid block: ",block)
-           else:
-               print ("Invalid block: ",block)
+    blockNum = 0
+    for sudoRow in range(1,3): #helper loop to stop from getting stuck to first 3 blocks
+        print ("srow", sudoRow)
+        for val in range(0,27,step):
+            print ("blockpos", val)
+            subRow1 = sudoku[(val*sudoRow):(val*sudoRow)+step]
+            subRow2 = sudoku[(val*sudoRow+9):(val*sudoRow)+step+9]
+            subRow3 = sudoku[(val*sudoRow+18):(val*sudoRow)+step+18]
+            print("subRow1: ",subRow1)
+            print("subRow2: ", subRow2)
+            print("subRow3: ", subRow3)
+
+            fullBlock = []
+            fullBlock.extend(subRow1)
+            fullBlock.extend(subRow2)
+            fullBlock.extend(subRow3)
+            print ("fb:" , fullBlock)
+            if (checkDuplicates(fullBlock) == True):
+                #print ("Valid block: ",fullBlock)
+                pass
+            else:
+                pass
+                #print ("Invalid block: ",fullBlock)
+            blockNum+=1
+        print("found", blockNum, " blocks")
 
 def validateRows(sudoku):
     print("Validating rows")
@@ -102,7 +115,7 @@ def checkDuplicates(sudokuPart):
          validArea = False
     return validArea
 
-if (brutevalidate(validSolvedSudoku) == False):
+if (brutevalidate(invalidSolvedSudoku) == False):
     print('Invalid sudoku solution')
 else:
     print('Congrats, sudoku solution is valid')
