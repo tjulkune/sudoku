@@ -42,7 +42,7 @@ def validateBlocks(sudoku):
         fullBlock.extend(subRow2)
         fullBlock.extend(subRow3)
         #print ("fullblock:" , fullBlock)
-        if (checkDuplicates(fullBlock) == True):
+        if (checkDuplicates(fullBlock, 9) == True):
             print ("Valid block: ",fullBlock)
         else:
             print ("Invalid block: ",fullBlock)
@@ -58,7 +58,7 @@ def validateRows(sudoku):
     for val in range(0,len(sudoku),9):
         row = sudoku[val:val+9]
         #print ("row: ", row)
-        if (checkDuplicates(row) == True):
+        if (checkDuplicates(row, 9) == True):
             print ("Valid row: ", row)
         else:
             print ("Invalid row: ",row)
@@ -76,13 +76,13 @@ def validateColumns(sudoku):
         for num in range(val, len(sudoku)-9, step):
             col.append(sudoku[num+9])
             #print(col)
-        if (checkDuplicates(col) == True):
+        if (checkDuplicates(col, 9) == True):
             print ("Valid column: ", col)
         else:
             validColumns = False
             print ("Invalid column: ", col)
     return validColumns
-    import sys, os
+
 
 
 def bruteValidate(sudoku):
@@ -95,11 +95,14 @@ def bruteValidate(sudoku):
     print ("rows: ", validRows, " blocks: ", validBlocks, " columns: ", validColumns)
     return validSolution
 
-def checkDuplicates(sudokuPart):
+# chunk is range of numbers to check
+# e.g 3 for first row of a single block
+# 9 for full block, row or column
+def checkDuplicates(sudokuPart, chunk):
     validArea = True
     area = sudokuPart
     print ("Validating area: ",area)
-    for checkval in range(1,10):
+    for checkval in range(1,chunk+1):
       if area.count(checkval) == 1:
          print("1 occurrence of", checkval, "found")
       elif area.count(checkval) != 0:
