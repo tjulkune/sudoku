@@ -3,25 +3,23 @@ import sudoku_validate
 import random
 
 def main():
-    # haven't calculated the odds, but it is very improbable this will ever yield valid sudoku
+    # generate single valid sudoku block
     def generateBlock():
         generatedBlock = []
         tries = 0
         orderedPartBlock = [i for i in range(1,10)]
         for row in range(1,4):
             shuffledPartBlock = []
-            sudoku = []
-            fullBlock = []
+
             step = 3
             blockNum = 0
             blockSeek = 0
             blockPos = 0
             invalidPart = True
 
-            random.sample(orderedPartBlock, len(orderedPartBlock))
-            sudoku.extend(shuffledPartBlock)
             #generate blocks until valid block is found
             while (invalidPart == True):
+                sudoku = []
                 tries+=1
                 print (" #", tries)
                 orderedPartBlock = [i for i in range(1,10)]
@@ -46,19 +44,21 @@ def main():
                     partBlock.extend(subRow2)
 
                     # check first 2 rows for duplicates
-                    if (sudoku_validate.checkDuplicates(partBlock, 6) == True):
+                    if (len(partBlock) != len(set(partBlock))):
                         print ("Invalid partial sudokublock: ",partBlock)
                         invalidPart = True
                     # check last row against earlier ones
                     else:
+                        fullBlock = []
                         fullBlock = partBlock
                         fullBlock.extend(subRow3)
-                        if (sudoku_validate.checkDuplicates(fullBlock, 9) == True):
+                        if (sudoku_validate.checkDuplicates(fullBlock) == False):
                             print ("Invalid full sudokublock: ",fullBlock)
                             invalidPart = True
                         else:
-                            print ("Valid partial sudokublock: ",fullBlock)
+                            print ("Valid full sudokublock: ",fullBlock)
                             invalidPart = False
+
 
             generatedBlock = fullBlock
                     # jump to next row of block
@@ -85,12 +85,8 @@ def main():
     #          if generatedSudoku
     #      return generatedSudoku
 
-    def generateSudoku():
-        generatedSudoku = generateBlock()
-        return generatedSudoku
-
-    doku = generateSudoku()
-    print("are we done?")
+    doku = generateBlock()
+    print("Sudoku Block Generation complete")
     #sudoku_validate.bruteValidate(generatedSudoku)
     sudoku_validate.printSudoku(doku)
 

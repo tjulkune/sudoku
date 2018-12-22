@@ -95,14 +95,12 @@ def bruteValidate(sudoku):
     print ("rows: ", validRows, " blocks: ", validBlocks, " columns: ", validColumns)
     return validSolution
 
-# chunk is range of numbers to check
-# e.g 3 for first row of a single block
-# 9 for full block, row or column
-def checkDuplicates(sudokuPart, chunk):
+
+def checkDuplicates(sudokuPart):
     validArea = True
     area = sudokuPart
     print ("Validating area: ",area)
-    for checkval in range(1,chunk+1):
+    for checkval in range(1,10):
       if area.count(checkval) == 1:
          print("1 occurrence of", checkval, "found")
       elif area.count(checkval) != 0:
