@@ -70,6 +70,21 @@ def main():
 
             return generatedBlock
 
+    # def generateSudoku():
+    #      generatedSudoku = []
+    #      for block in range(1,10):
+    #          singleBlock = generateBlock()
+    #          orderedPartBlockRow = [i for i in range(1,10)]
+    #          shuffledPartBlockRow = random.sample(orderedPartBlockRow, len(orderedPartBlock))
+    #          duplicateRowNumbers = True
+    #          while(duplicateRowNumbers == True)
+    #             for num in range(1,4):
+    # #                 if sudoku_validate.checkDuplicates == True:
+    #
+    #          generatedSudoku.extend(singleBlock)
+    #          if generatedSudoku
+    #      return generatedSudoku
+
     def generateSudoku():
         generatedSudoku = generateBlock()
         return generatedSudoku
