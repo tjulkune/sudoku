@@ -42,7 +42,7 @@ def validateBlocks(sudoku):
         fullBlock.extend(subRow2)
         fullBlock.extend(subRow3)
         #print ("fullblock:" , fullBlock)
-        if (checkDuplicates(fullBlock, 9) == True):
+        if (checkDuplicates(fullBlock) == True):
             print ("Valid block: ",fullBlock)
         else:
             print ("Invalid block: ",fullBlock)
@@ -58,7 +58,7 @@ def validateRows(sudoku):
     for val in range(0,len(sudoku),9):
         row = sudoku[val:val+9]
         #print ("row: ", row)
-        if (checkDuplicates(row, 9) == True):
+        if (checkDuplicates(row) == True):
             print ("Valid row: ", row)
         else:
             print ("Invalid row: ",row)
@@ -76,7 +76,7 @@ def validateColumns(sudoku):
         for num in range(val, len(sudoku)-9, step):
             col.append(sudoku[num+9])
             #print(col)
-        if (checkDuplicates(col, 9) == True):
+        if (checkDuplicates(col) == True):
             print ("Valid column: ", col)
         else:
             validColumns = False

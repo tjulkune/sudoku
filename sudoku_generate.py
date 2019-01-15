@@ -70,25 +70,35 @@ def main():
 
             return generatedBlock
 
-    # def generateSudoku():
-    #      generatedSudoku = []
-    #      for block in range(1,10):
-    #          singleBlock = generateBlock()
-    #          orderedPartBlockRow = [i for i in range(1,10)]
-    #          shuffledPartBlockRow = random.sample(orderedPartBlockRow, len(orderedPartBlock))
-    #          duplicateRowNumbers = True
-    #          while(duplicateRowNumbers == True)
-    #             for num in range(1,4):
-    # #                 if sudoku_validate.checkDuplicates == True:
-    #
-    #          generatedSudoku.extend(singleBlock)
-    #          if generatedSudoku
-    #      return generatedSudoku
+    def generateSudoku():
+          generatedSudoku = []
+          for block in range(1,10):
+              singleBlock = generateBlock()
+              orderedPartBlockRow = [i for i in range(1,10)]
+              shuffledPartBlockRow = random.sample(orderedPartBlockRow, len(orderedPartBlockRow))
+              duplicateRowNumbers = True
+              while(duplicateRowNumbers == True):
+                 for num in range(1,4):
+                     singleBlock = generateBlock()
+                     if sudoku_validate.checkDuplicates(shuffledPartBlockRow) == True:
+                         generatedSudoku.extend(singleBlock)
+                 duplicateRowNumbers = False
+              #if sudoku_validate.bruteValidate(generatedSudoku)
+          return generatedSudoku
 
-    doku = generateBlock()
-    print("Sudoku Block Generation complete")
-    #sudoku_validate.bruteValidate(generatedSudoku)
+    #doku = generateBlock()
+    doku = generateSudoku()
     sudoku_validate.printSudoku(doku)
+    trueSudoku = False
+    # while (trueSudoku == False):
+    #     doku = generateSudoku()
+    #     print("############################################################")
+    #     sudoku_validate.printSudoku(doku)
+    #     if(sudoku_validate.bruteValidate(doku) == True):
+    #         trueSudoku = True
+    #
+    # sudoku_validate.printSudoku(doku)
+    # print("Sudoku Generation complete")
 
 if __name__ == "__main__":
     main()
